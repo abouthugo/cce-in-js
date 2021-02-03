@@ -1,9 +1,9 @@
 export default class StringBuilder {
-  private charSequence: string[];
+  private words: string[];
   private _capacity: number;
 
   constructor(charSequence = "", capacity = 16) {
-    this.charSequence = [];
+    this.words = [];
     if (charSequence.length > 0) {
       this.append(charSequence);
     }
@@ -16,8 +16,8 @@ export default class StringBuilder {
    */
   append(charSequence: string): void {
     for (const s of charSequence) {
-      if (this.charSequence.length < this._capacity) {
-        this.charSequence.push(s);
+      if (this.words.length < this._capacity) {
+        this.words.push(s);
       }
     }
   }
@@ -34,8 +34,8 @@ export default class StringBuilder {
    * @param index
    */
   charAt(index: number): string | boolean {
-    if (this.charSequence.length > index && index < this._capacity) {
-      return this.charSequence[index];
+    if (this.words.length > index && index < this._capacity) {
+      return this.words[index];
     }
     return false;
   }
@@ -47,7 +47,7 @@ export default class StringBuilder {
    */
   delete(start: number, end: number): void {
     if (start >= 0 && end < this._capacity && end > start) {
-      this.charSequence.splice(start, end - start);
+      this.words.splice(start, end - start);
     }
   }
 
@@ -60,14 +60,14 @@ export default class StringBuilder {
   indexOf(str: string): number {
     let str_index = 0;
     let char_index = 0;
-    for (char_index; char_index < this.charSequence.length; char_index++) {
-      if (this.charSequence.length - char_index > str.length - str_index) {
+    for (char_index; char_index < this.words.length; char_index++) {
+      if (this.words.length - char_index > str.length - str_index) {
         // Early termination
         return -1;
       }
 
       // TODO: finish writing this function
-      if (this.charSequence[char_index] === str[str_index]) {
+      if (this.words[char_index] === str[str_index]) {
         str_index++;
       } else if (str_index > 0) {
         str_index = 0;
@@ -76,10 +76,21 @@ export default class StringBuilder {
   }
 
   /**
+   * Returns
+   */
+  toString(): string {
+    let sentence = "";
+    for (const word of this.words) {
+      sentence += word;
+    }
+    return sentence;
+  }
+
+  /**
    * Returns the character count
    */
   length(): number {
-    return this.charSequence.length;
+    return this.words.length;
   }
 }
 
