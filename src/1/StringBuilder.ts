@@ -1,32 +1,35 @@
+/**
+ * This implementation is heavily influenced by Oracle's implementation of the String Builder class.
+ * All the methods defined in this class were inspired by existing methods in the official docs.
+ */
 export default class StringBuilder {
-  private words: string[];
+  /**
+   * An array of single letters. Aka a char array.
+   */
+  private charSequence: string[];
   private _capacity: number;
 
   constructor(charSequence = "", capacity = 16) {
-    this.words = [];
+    this.charSequence = [];
     if (charSequence.length > 0) {
-      this.append(charSequence);
+      for (const c of charSequence) {
+        this.append(c);
+      }
     }
     this._capacity = capacity;
   }
 
   /**
-   * Appends the given string to the end of the array
+   * Appends the given string to the end of the array. However, if the capacity of the array
+   * has been reached, the rest of the remaining characters will be ignored.
    * @param charSequence
    */
   append(charSequence: string): void {
     for (const s of charSequence) {
-      if (this.words.length < this._capacity) {
-        this.words.push(s);
+      if (this.charSequence.length < this._capacity) {
+        this.charSequence.push(s);
       }
     }
-  }
-
-  /**
-   * Returns the capacity of this string builder
-   */
-  capacity(): number {
-    return this._capacity;
   }
 
   /**
@@ -34,8 +37,8 @@ export default class StringBuilder {
    * @param index
    */
   charAt(index: number): string | boolean {
-    if (this.words.length > index && index < this._capacity) {
-      return this.words[index];
+    if (this.charSequence.length > index && index < this._capacity) {
+      return this.charSequence[index];
     }
     return false;
   }
@@ -47,41 +50,61 @@ export default class StringBuilder {
    */
   delete(start: number, end: number): void {
     if (start >= 0 && end < this._capacity && end > start) {
-      this.words.splice(start, end - start);
+      this.charSequence.splice(start, end - start);
     }
   }
 
   /**
-   * Returns the starting index of the given string
+   * Returns the starting index of the given string pattern
    *
    * -1 when it is not present
    * @param str
    */
   indexOf(str: string): number {
+    // When the given string pattern is bigger than the StringBuilder itself
+    if (str.length > this.capacity()) return -1;
     let str_index = 0;
     let char_index = 0;
-    for (char_index; char_index < this.words.length; char_index++) {
-      if (this.words.length - char_index > str.length - str_index) {
-        // Early termination
+    for (char_index; char_index < this.charSequence.length; char_index++) {
+      if (str.length - str_index > this.charSequence.length - char_index) {
+        /**
+         * Early termination case:
+         *
+         * When the char index has reached a point where it is no longer possible to
+         * find the string pattern in the remaining slots in the array.
+         */
         return -1;
       }
 
-      // TODO: finish writing this function
-      if (this.words[char_index] === str[str_index]) {
+      if (this.charSequence[char_index] === str[str_index]) {
         str_index++;
+        /**
+         * When the str_index is as big as the length of the given string pattern we
+         * know we have found a match. Thus, we return the pointer of the char sequence
+         * minus the pointer of the string pattern provided and account for an extra
+         * character since the str pointer is updated earlier in the execution
+         * of the program and in this instance particularly
+         */
+        if (str.length === str_index) return 1 + char_index - str_index;
       } else if (str_index > 0) {
+        /**
+         * When we had a previous match but it does not follow through
+         * we need to reset the second pointer.
+         */
         str_index = 0;
       }
     }
+
+    return -1;
   }
 
   /**
-   * Returns
+   * Returns the string form of the String Builder
    */
   toString(): string {
     let sentence = "";
-    for (const word of this.words) {
-      sentence += word;
+    for (const c of this.charSequence) {
+      sentence += c;
     }
     return sentence;
   }
@@ -90,10 +113,13 @@ export default class StringBuilder {
    * Returns the character count
    */
   length(): number {
-    return this.words.length;
+    return this.charSequence.length;
+  }
+
+  /**
+   * Returns the capacity of this string builder
+   */
+  capacity(): number {
+    return this._capacity;
   }
 }
-
-const test = new StringBuilder("hello world", 16);
-test.append("yo");
-console.log(test.capacity());
