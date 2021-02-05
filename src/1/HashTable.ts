@@ -1,5 +1,5 @@
 /**
- * A simple implementation of a Hash Table using an array of linked lists and a hash code function
+ * A simple implementation of a Hash Table using an array of linked lists and an overly simplistic hash function
  */
 
 export default class HashTable {
@@ -11,13 +11,19 @@ export default class HashTable {
     this.limit = limit;
   }
 
-  put(value: any): void {
-    const newEntry = new LinkedList(value);
-    const index = generateHashCode(value, this.limit);
-    if (this.table[index] !== null) {
+  /**
+   * Inserts the given value into the table
+   * @param value
+   */
+  put(key: string, value: any): void {
+    // Cannot use the same key twice
+    if (typeof this.contains(key) === "number") throw "This key already exists";
+
+    const newEntry = new LinkedList(key, value);
+    const index = generateHashCode(key) % this.limit;
+    if (this.table[index]) {
       let next = this.table[index];
-      while (true) {
-        if (next.next === null) break;
+      while (next.next !== null) {
         next = next.next;
       }
       next.next = newEntry;
@@ -26,28 +32,85 @@ export default class HashTable {
     }
   }
 
-  get(value: any): any {}
+  /**
+   * Retrieves the LinkedList node that contains the value specified or undefined if it is not in the table
+   * @param key
+   */
+  get(key: string): any | undefined {
+    const index = this.contains(key);
+    if (typeof index === "number") {
+      if (this.table[index].key === key) return this.table[index].value;
+      let next = this.table[index].next;
+      while (next) {
+        if (next.key === key) return next.value;
+        next = next.next;
+      }
+    }
 
-  contains(value: any): boolean {}
+    return undefined;
+  }
+
+  /**
+   * Checks if the table has the given value. It returns the index at which
+   * the value has been found but if it is not in the table it returns false
+   * @param key
+   */
+  contains(key: string): number | boolean {
+    const index = generateHashCode(key) % this.limit;
+    // Early termination
+    if (this.table[index] === undefined) return false;
+    if (this.table[index].key === key) return index;
+
+    let next = this.table[index].next;
+    while (next) {
+      if (next.key === key) return index;
+      next = next.next;
+    }
+
+    return false;
+  }
+
+  /**
+   * A sting representation of this hash table
+   */
+  toString(): string {
+    let str = "";
+    for (let i = 0; i < this.table.length; i++) {
+      let next = this.table[i].next;
+      let row = `${i}\t[${this.table[i].value}]`;
+      while (next) {
+        row += `-[${next.value}]`;
+        next = next.next;
+      }
+      str += `${row}\n`;
+    }
+    return str;
+  }
 }
 
 /**
  * Simple implementation of a Linked List
  */
 class LinkedList {
+  key: string;
   value: any;
   next: null | LinkedList;
 
-  constructor(value: any) {
+  constructor(key: string, value: any) {
+    this.key = key;
     this.value = value;
     this.next = null;
   }
 }
 
 /**
- * Hashes
+ * A very simplistic method for hashing. I'm so embarrassed about it! Please don't judge me.
  * @param limit
  */
-function generateHashCode(value: any, limit: number): number {
-  return limit + 1;
+function generateHashCode(key: string): number {
+  let hash = 0;
+  for (let i = 0; i < key.length; i++) {
+    hash += key.charCodeAt(i);
+  }
+  return hash;
 }
