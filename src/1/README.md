@@ -4,7 +4,9 @@
 
 * String Builders
 * Hash Tables
-* Array Lists
+* Array Lists*
+
+<small>*Actually, implementing Array Lists in JS is very trivial. When I started implementing it I instantly noticed how inefficient my code would be compare to the generic array</small>
 
 ## Leetcode problems covered:
 
