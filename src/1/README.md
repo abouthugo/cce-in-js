@@ -10,4 +10,6 @@
 
 ## Leetcode problems covered:
 
-* TwoSum
+* [TwoSum](https://leetcode.com/problems/two-sum/)
+* [Search Insert Position](https://leetcode.com/problems/search-insert-position/)
+* [Plus One](https://leetcode.com/problems/plus-one/)
