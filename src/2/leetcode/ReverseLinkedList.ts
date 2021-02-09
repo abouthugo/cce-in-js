@@ -61,8 +61,3 @@ function reverseListRecursive(head: ListNode): ListNode {
   // [2] -> 1 -> null
   return endOfList;
 }
-
-interface ListNode {
-  val: any;
-  next: any;
-}
