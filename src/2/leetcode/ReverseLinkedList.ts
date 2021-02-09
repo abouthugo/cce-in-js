@@ -2,7 +2,7 @@
  * Reverse a singly linked list.
  */
 
-function ListNode(val: any, next: any) {
+export function ListNode(val: any, next: any): ListNode {
   return {
     val: val === undefined ? 0 : val,
     next: next === undefined ? null : next,
@@ -14,7 +14,7 @@ function ListNode(val: any, next: any) {
  * @param {ListNode} head
  * @return {ListNode}
  */
-function reverseList(head: ListNode) {
+export function reverseList(head: ListNode): ListNode {
   const list = [];
   let n = head;
   while (n) {
@@ -35,7 +35,7 @@ function reverseList(head: ListNode) {
  * The iterative solution in leet code
  * @param head
  */
-function reverseList2(head: ListNode) {
+export function reverseList2(head: ListNode): ListNode | null {
   let prev = null;
   let current = head;
   while (current) {
@@ -51,7 +51,7 @@ function reverseList2(head: ListNode) {
  * The recursive solution from leet code
  * @param head
  */
-function reverseListRecursive(head: ListNode): ListNode {
+export function reverseListRecursive(head: ListNode): ListNode {
   if (head === null || head.next === null) return head;
   const endOfList = reverseListRecursive(head.next);
   // [1] -> [2]
