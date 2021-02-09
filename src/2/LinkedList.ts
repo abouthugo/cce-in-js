@@ -1,3 +1,5 @@
+import Node from "./Node";
+
 export default class LinkedList<T> {
   head: Node<T> | null;
   tail: Node<T> | null;
@@ -13,7 +15,7 @@ export default class LinkedList<T> {
    * Inserts the item at the end of the linked list
    * @param d
    */
-  insertLast(d: T) {
+  insertLast(d: T): void {
     if (this.tail !== null) {
       const n = new Node(d);
       this.tail.appendToTail(n);
@@ -29,7 +31,7 @@ export default class LinkedList<T> {
    * Inserts the item at the beginning of the linked list
    * @param d
    */
-  insertFirst(d: T) {
+  insertFirst(d: T): void {
     if (this.head !== null) {
       const n = new Node(d);
       n.appendToTail(this.head);
@@ -45,7 +47,7 @@ export default class LinkedList<T> {
    * Defaults to inserting the item at the end of the linked list
    * @param d
    */
-  insert(d: T) {
+  insert(d: T): void {
     this.insertLast(d);
   }
 
@@ -55,7 +57,7 @@ export default class LinkedList<T> {
    * @param d
    * @param after
    */
-  insertAfter(d: T, after: T) {
+  insertAfter(d: T, after: T): void {
     const predecessor = this.contains(after);
     if (predecessor && predecessor.next) {
       const n = new Node(d);
@@ -91,7 +93,7 @@ export default class LinkedList<T> {
    * linked list suffers no side effects
    * @param d
    */
-  delete(d: T) {
+  delete(d: T): void {
     if (this.head && this.tail) {
       const isHead = this.head.data === d;
       const isTail = this.tail.data === d;
@@ -147,14 +149,14 @@ export default class LinkedList<T> {
   /**
    * Returns the length of the array list
    */
-  get length() {
+  get length(): number {
     return this._length;
   }
 
   /**
    * Returns the string representation of the linked list
    */
-  toString() {
+  toString(): string {
     const arr = [];
     let n = this.head;
     while (n) {
@@ -163,22 +165,5 @@ export default class LinkedList<T> {
     }
 
     return arr.join(" -> ");
-  }
-}
-
-/**
- * Basic Node class
- */
-class Node<T> {
-  next: Node<T> | null;
-  data: T;
-
-  constructor(data: T) {
-    this.data = data;
-    this.next = null;
-  }
-
-  appendToTail(next: Node<T>) {
-    this.next = next;
   }
 }
