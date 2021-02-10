@@ -8,6 +8,7 @@ This was a very short chapter which included just Linked Lists and useful techni
 
 ### Exercises:
 * 2.1 Remove Dups
+* 2.2 Kth-To Last
 
 ## Leetcode problems covered:
 
