@@ -13,3 +13,4 @@ This was a very short chapter which included just Linked Lists and useful techni
 
 * [Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/)
 * [Convert Binary Number in a Linked List to Integer](https://leetcode.com/problems/convert-binary-number-in-a-linked-list-to-integer/)
+* [Middle of the Linked List](https://leetcode.com/problems/middle-of-the-linked-list/)
