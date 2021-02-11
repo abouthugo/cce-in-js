@@ -13,4 +13,16 @@ export default class Node<T> {
   appendToTail(next: Node<T>): void {
     this.next = next;
   }
+
+  flatten(): T[] {
+    const arr = [];
+    arr.push(this.data);
+    let next = this.next;
+    while (next) {
+      arr.push(next.data);
+      next = next.next;
+    }
+
+    return arr;
+  }
 }
