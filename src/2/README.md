@@ -10,6 +10,7 @@ This was a very short chapter which included just Linked Lists and useful techni
 * 2.1 Remove Dups
 * 2.2 Kth-To Last
 * 2.3 Delete Middle Node
+* 2.5 Sum Lists
 
 ## Leetcode problems covered:
 
