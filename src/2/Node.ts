@@ -10,7 +10,7 @@ export default class Node<T> {
     this.next = null;
   }
 
-  appendToTail(next: Node<T>): void {
+  appendToTail(next: Node<T> | null): void {
     this.next = next;
   }
 
