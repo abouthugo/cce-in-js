@@ -12,6 +12,7 @@ This was a very short chapter which included just Linked Lists and useful techni
 * 2.3 Delete Middle Node
 * 2.5 Sum Lists
 * 2.6 Palindrome
+* 2.7 Intersection
 
 ## Leetcode problems covered:
 
