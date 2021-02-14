@@ -32,7 +32,7 @@ export default class MyStack<T> {
   }
 
   isEmpty(): boolean {
-    return this.top ? true : false;
+    return this.top ? false : true;
   }
 
   flatten(): T[] {
