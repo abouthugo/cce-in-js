@@ -11,3 +11,5 @@ I implemented my own version of a [Stack](Stack.ts) and [Queue](Queue.ts).
 
 ## Leetcode problems covered:
 
+* [Number of Recent Calls](https://leetcode.com/problems/number-of-recent-calls/)
+* [Backspace String Compare](https://leetcode.com/problems/backspace-string-compare/)
