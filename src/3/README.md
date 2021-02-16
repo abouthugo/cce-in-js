@@ -8,6 +8,7 @@ I implemented my own version of a [Stack](Stack.ts) and [Queue](Queue.ts).
 
 ### Exercises:
 
+* Stack Min
 
 ## Leetcode problems covered:
 

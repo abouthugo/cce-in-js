@@ -2,11 +2,17 @@ import Node from "../2/Node";
 
 export default class MyStack<T> {
   top: Node<T> | null;
+  private _min: T | undefined;
   constructor() {
     this.top = null;
   }
 
   push(d: T): void {
+    if (this._min === undefined) {
+      this._min = d;
+    } else if (d < this._min) {
+      this._min = d;
+    }
     const newTop = new Node(d);
     newTop.appendToTail(this.top);
     this.top = newTop;
@@ -18,6 +24,24 @@ export default class MyStack<T> {
     }
 
     const temp = this.top.data;
+
+    if (temp === this.min) {
+      // search new min
+      if (this.top.next) {
+        let p: Node<T> | null = this.top.next;
+        let min = p.data;
+        while (p) {
+          if (p.data < min) {
+            min = p.data;
+          }
+          p = p.next;
+        }
+        this._min = min;
+      } else {
+        this._min = undefined;
+      }
+    }
+
     this.top = this.top.next;
 
     return temp;
@@ -44,5 +68,9 @@ export default class MyStack<T> {
     }
 
     return res;
+  }
+
+  get min(): T | undefined {
+    return this._min;
   }
 }
