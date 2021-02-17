@@ -9,10 +9,10 @@ I implemented my own version of a [Stack](Stack.ts) and [Queue](Queue.ts).
 ### Exercises:
 
 * Stack Min
+* Set of Stacks
 
 ## Leetcode problems covered:
 
 * [Number of Recent Calls](https://leetcode.com/problems/number-of-recent-calls/)
 * [Backspace String Compare](https://leetcode.com/problems/backspace-string-compare/)
 * [Daily Temperatures](https://leetcode.com/problems/daily-temperatures/)
-* 
