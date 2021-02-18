@@ -11,6 +11,7 @@ I implemented my own version of a [Stack](Stack.ts) and [Queue](Queue.ts).
 * Stack Min
 * Set of Stacks
 * Implementing a Queue with 2 Stacks
+* Sort Stack
 
 ## Leetcode problems covered:
 
