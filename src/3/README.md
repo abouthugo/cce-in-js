@@ -20,3 +20,4 @@ I implemented my own version of a [Stack](Stack.ts) and [Queue](Queue.ts).
 * [Daily Temperatures](https://leetcode.com/problems/daily-temperatures/)
 * [Task Scheduler](https://leetcode.com/problems/task-scheduler/)
 * [Implement Stack using Queues](https://leetcode.com/problems/implement-stack-using-queues/)
+* [Remove Outermost Parentheses](https://leetcode.com/problems/remove-outermost-parentheses/)
