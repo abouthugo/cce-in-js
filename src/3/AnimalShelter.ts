@@ -1,6 +1,6 @@
 type PetType = "Cat" | "Dog";
 
-class Animal {
+export class Animal {
   pet_type: PetType;
   name: string;
 
@@ -57,7 +57,7 @@ export default class AnimalShelter {
       while (curr && curr.next) {
         if (curr.next.animal.pet_type === "Dog") {
           const d = curr.next.animal;
-          curr.next == curr.next.next;
+          curr.next = curr.next.next;
           return d;
         }
         curr = curr.next;
@@ -82,13 +82,23 @@ export default class AnimalShelter {
           if (curr.next === this.last) {
             this.last = curr;
           }
-          curr.next == curr.next.next;
+          curr.next = curr.next.next;
           return d;
         }
         curr = curr.next;
       }
       throw new Error("No more dogs in the shelter");
     }
+  }
+
+  toString(): string {
+    let curr = this.first;
+    let str = "";
+    while (curr) {
+      str += `${curr.animal.name}\n`;
+      curr = curr.next;
+    }
+    return str;
   }
 
   private updateNextNode(): void {
