@@ -1,3 +1,6 @@
+import { dir } from "console";
+import { runInThisContext } from "vm";
+
 export default class BinarySearchTree<T> {
   private data: T;
   private left: BinarySearchTree<T> | null;
@@ -21,6 +24,68 @@ export default class BinarySearchTree<T> {
         this.left = new BinarySearchTree(x);
       } else {
         this.left.insert(x);
+      }
+    }
+  }
+
+  delete(
+    x: T,
+    parent: BinarySearchTree<T> | null = null,
+    direction?: "right" | "left"
+  ): void {
+    if (x === this.data) {
+      // found it
+      if (this.left === null && this.right === null && parent && direction) {
+        noChildren(parent, direction);
+      } else if (
+        parent &&
+        direction &&
+        ((this.left !== null && this.right === null) ||
+          (this.left === null && this.right !== null))
+      ) {
+        oneChild(this, parent, direction);
+      } else {
+        // TODO: implement this
+        // both of them are present, might be the root node too
+      }
+    } else if (x > this.data && this.right !== null) {
+      this.right.delete(x, this, "right");
+    } else if (this.left !== null) {
+      this.left.delete(x, this, "left");
+    }
+
+    function noChildren(
+      parent: BinarySearchTree<T>,
+      direction: "right" | "left"
+    ) {
+      // Case 1: no children
+      switch (direction) {
+        case "left":
+          if (parent.left) {
+            parent.left = null;
+          }
+          break;
+        case "right":
+          if (parent.right) {
+            parent.right = null;
+          }
+      }
+    }
+
+    function oneChild(
+      root: BinarySearchTree<T>,
+      parent: BinarySearchTree<T>,
+      direction: "right" | "left"
+    ) {
+      switch (direction) {
+        case "right":
+          if (parent.right) {
+            parent.right = root.left === null ? root.right : root.left;
+          }
+        case "left":
+          if (parent.left) {
+            parent.left = root.left === null ? root.right : root.left;
+          }
       }
     }
   }
