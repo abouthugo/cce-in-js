@@ -5,6 +5,10 @@ export default function BalanceBST(root: TreeNode): TreeNode | null {
   inOrderTraversal(root);
   return balancedTree(arr);
 
+  /**
+   * Goes through the tree and adds the values to a temporary array in order.
+   * @param node
+   */
   function inOrderTraversal(node: TreeNode | null) {
     if (node === null) return;
     inOrderTraversal(node.left);
@@ -12,6 +16,11 @@ export default function BalanceBST(root: TreeNode): TreeNode | null {
     inOrderTraversal(node.right);
   }
 
+  /**
+   * Given the array of "ordered" values it find the middle and sets it as the root and then it does the same for the left and right branches recursively.
+   * We then end up with a tree that is balanced
+   * @param tree
+   */
   function balancedTree(tree: number[]): TreeNode | null {
     if (tree.length <= 0) return null;
     const mid = Math.floor((tree.length - 1) / 2);
