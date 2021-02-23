@@ -1,6 +1,3 @@
-import { dir } from "console";
-import { runInThisContext } from "vm";
-
 export default class BinarySearchTree<T> {
   private data: T;
   private left: BinarySearchTree<T> | null;
@@ -12,7 +9,7 @@ export default class BinarySearchTree<T> {
     this.right = null;
   }
 
-  insert(x: T) {
+  insert(x: T): void {
     if (x > this.data) {
       if (this.right === null) {
         this.right = new BinarySearchTree(x);
@@ -90,11 +87,11 @@ export default class BinarySearchTree<T> {
     }
   }
 
-  print() {
+  print(): void {
     console.log(JSON.stringify(this, null, 2));
   }
 
-  flatten() {
+  flatten(): any[] | null {
     return recursiveFlatten(this);
 
     function recursiveFlatten(root: BinarySearchTree<T> | null): any[] | null {
