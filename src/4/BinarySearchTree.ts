@@ -29,6 +29,18 @@ export default class BinarySearchTree<T> {
     console.log(JSON.stringify(this, null, 2));
   }
 
+  flatten() {
+    return recursiveFlatten(this);
+
+    function recursiveFlatten(root: BinarySearchTree<T> | null): any[] | null {
+      if (root === null) return null;
+      return [
+        root.data,
+        [recursiveFlatten(root.left), recursiveFlatten(root.right)],
+      ];
+    }
+  }
+
   traverse(): T[] {
     const res: T[] = [];
     visit(this);

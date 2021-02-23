@@ -14,3 +14,12 @@ test("Inserts", () => {
 
   console.log(tree.traverse());
 });
+
+test("Flatten", () => {
+  const tree = new BinarySearchTree(0);
+  tree.insert(1);
+  tree.insert(2);
+
+  const res = tree.flatten();
+  console.log(JSON.stringify(res, null, 1));
+});
