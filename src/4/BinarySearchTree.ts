@@ -41,9 +41,12 @@ export default class BinarySearchTree<T> {
           (this.left === null && this.right !== null))
       ) {
         oneChild(this, parent, direction);
-      } else {
+      } else if (this.right && this.left) {
         // TODO: implement this
         // both of them are present, might be the root node too
+        // the strategy is to replace the
+        const leftMost = getLeftmostchild(this.right, this, 0);
+        this.data = leftMost.data;
       }
     } else if (x > this.data && this.right !== null) {
       this.right.delete(x, this, "right");
@@ -84,6 +87,25 @@ export default class BinarySearchTree<T> {
             parent.left = root.left === null ? root.right : root.left;
           }
       }
+    }
+
+    function getLeftmostchild(
+      branch: BinarySearchTree<T>,
+      parent: BinarySearchTree<T>,
+      depth: number
+    ): BinarySearchTree<T> {
+      if (branch.left === null) {
+        // when we cannot go further down the left side
+        if (depth > 0) {
+          parent.left = null;
+        } else {
+          parent.right = null;
+        }
+        return branch;
+      }
+
+      // keep going down the left side
+      return getLeftmostchild(branch.left, branch, depth + 1);
     }
   }
 
