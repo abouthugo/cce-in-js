@@ -11,3 +11,4 @@ I made my own implementation of a [Binary Search Tree](BinarySearchTree.ts).
 
 * [Balance a Binary Search Tree](https://leetcode.com/problems/balance-a-binary-search-tree/)
 * [Find the Town Judge](https://leetcode.com/problems/find-the-town-judge/)
+* [Binary Search Tree to Greater Sum Tree](https://leetcode.com/problems/binary-search-tree-to-greater-sum-tree/)
