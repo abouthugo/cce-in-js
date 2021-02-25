@@ -7,6 +7,7 @@ I made my own implementation of a [Binary Search Tree](BinarySearchTree.ts).
 ### Exercises:
 
 * Route Between Nodes
+* Minimal Tree
 
 
 ## Leetcode problems covered:
