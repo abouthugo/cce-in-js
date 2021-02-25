@@ -1,6 +1,6 @@
 import TreeNode from "./TreeNode";
 
-function greaterSumTree(root: TreeNode): TreeNode {
+export function greaterSumTree(root: TreeNode): TreeNode {
   let sum = 0;
   helper(root);
   return root;
