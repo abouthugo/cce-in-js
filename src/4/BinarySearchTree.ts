@@ -1,7 +1,7 @@
 export default class BinarySearchTree<T> {
   private data: T;
-  private left: BinarySearchTree<T> | null;
-  private right: BinarySearchTree<T> | null;
+  left: BinarySearchTree<T> | null;
+  right: BinarySearchTree<T> | null;
 
   constructor(data: T) {
     this.data = data;
@@ -42,9 +42,6 @@ export default class BinarySearchTree<T> {
       ) {
         oneChild(this, parent, direction);
       } else if (this.right && this.left) {
-        // TODO: implement this
-        // both of them are present, might be the root node too
-        // the strategy is to replace the
         const leftMost = getLeftmostchild(this.right, this, 0);
         this.data = leftMost.data;
       }
