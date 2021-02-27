@@ -8,6 +8,7 @@ I made my own implementation of a [Binary Search Tree](BinarySearchTree.ts).
 
 * Route Between Nodes
 * Minimal Tree
+* List of Depths
 
 
 ## Leetcode problems covered:
