@@ -1,16 +1,16 @@
 export default class BinarySearchTree<T> {
-  private data: T;
+  val: T;
   left: BinarySearchTree<T> | null;
   right: BinarySearchTree<T> | null;
 
   constructor(data: T) {
-    this.data = data;
+    this.val = data;
     this.left = null;
     this.right = null;
   }
 
   insert(x: T): void {
-    if (x > this.data) {
+    if (x > this.val) {
       if (this.right === null) {
         this.right = new BinarySearchTree(x);
       } else {
@@ -30,7 +30,7 @@ export default class BinarySearchTree<T> {
     parent: BinarySearchTree<T> | null = null,
     direction?: "right" | "left"
   ): void {
-    if (x === this.data) {
+    if (x === this.val) {
       // found it
       if (this.left === null && this.right === null && parent && direction) {
         noChildren(parent, direction);
@@ -43,9 +43,9 @@ export default class BinarySearchTree<T> {
         oneChild(this, parent, direction);
       } else if (this.right && this.left) {
         const leftMost = getLeftmostchild(this.right, this, 0);
-        this.data = leftMost.data;
+        this.val = leftMost.val;
       }
-    } else if (x > this.data && this.right !== null) {
+    } else if (x > this.val && this.right !== null) {
       this.right.delete(x, this, "right");
     } else if (this.left !== null) {
       this.left.delete(x, this, "left");
@@ -116,7 +116,7 @@ export default class BinarySearchTree<T> {
     function recursiveFlatten(root: BinarySearchTree<T> | null): any[] | null {
       if (root === null) return null;
       return [
-        root.data,
+        root.val,
         [recursiveFlatten(root.left), recursiveFlatten(root.right)],
       ];
     }
@@ -130,7 +130,7 @@ export default class BinarySearchTree<T> {
     function visit(n: BinarySearchTree<T> | null) {
       if (n === null) return;
       visit(n.left);
-      res.push(n.data);
+      res.push(n.val);
       visit(n.right);
     }
   }
