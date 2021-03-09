@@ -20,3 +20,4 @@ I made my own implementation of a [Binary Search Tree](BinarySearchTree.ts).
 * [All Paths From Source to Target](https://leetcode.com/problems/all-paths-from-source-to-target/)
 * [Keys and Rooms](https://leetcode.com/problems/keys-and-rooms/)
 * [Range Sum of BST](https://leetcode.com/problems/range-sum-of-bst/)
+* [Minimum Number of Vertices to Reach All Nodes](https://leetcode.com/problems/minimum-number-of-vertices-to-reach-all-nodes/)
